@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Speaking Practice — Transport &amp; Journeys</title>
+<style>
+  :root{
+    --accent:#0f766e; --accent-dark:#115e59; --accent-soft:#ecfbf8; --accent-line:#9fd8d0;
+    --page-a:#f0f9f8; --page-b:#e6f3f2;
+    --green:#16a34a; --amber:#d97706; --red:#dc2626;
+    --card:#ffffff; --ink:#1f2937; --muted:#6b7280; --border:#e5e7eb;
+  }
+
+  /* ---- Topic themes ---- */
+  body[data-theme="transport"]{
+    --accent:#0f766e; --accent-dark:#115e59; --accent-soft:#ecfbf8; --accent-line:#9fd8d0;
+    --page-a:#f0f9f8; --page-b:#e4f2f0;
+  }
+  body[data-theme="traffic"]{
+    --accent:#b45309; --accent-dark:#92400e; --accent-soft:#fff7ec; --accent-line:#eecfa3;
+    --page-a:#fdf8f1; --page-b:#f9eedf;
+  }
+  body[data-theme="journeys"]{
+    --accent:#4338ca; --accent-dark:#3730a3; --accent-soft:#f0f1ff; --accent-line:#bdc0f2;
+    --page-a:#f5f6fd; --page-b:#eceefb;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); padding:24px 14px 60px; min-height:100vh;
+    background:linear-gradient(170deg,var(--page-a) 0%,var(--page-b) 100%);
+    background-attachment:fixed;
+    transition:background .45s ease;
+  }
+  .wrap{max-width:760px; margin:0 auto;}
+
+  .masthead{text-align:center; margin-bottom:20px;}
+  .masthead .badge{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:50px; height:50px; border-radius:16px; font-size:1.6rem;
+    background:var(--accent-soft); border:1px solid var(--accent-line);
+    margin-bottom:8px; transition:.35s;
+  }
+  h1{font-size:1.5rem; margin:0 0 2px;}
+  .subtitle{color:var(--muted); font-size:0.95rem; margin:0;}
+
+  .tabs{display:flex; gap:8px; margin-bottom:18px;}
+  .tab-btn{
+    flex:1; padding:11px 6px; border:none; border-radius:10px;
+    background:var(--accent-soft); border:1px solid var(--accent-line);
+    color:var(--accent-dark); font-weight:600; font-size:0.92rem; cursor:pointer;
+    transition:.18s;
+  }
+  .tab-btn.active{background:var(--accent); border-color:var(--accent); color:#fff;}
+  .tab-btn:hover:not(.active){filter:brightness(.97);}
+
+  .progress-wrap{margin-bottom:16px;}
+  .progress-label{display:flex; justify-content:space-between; font-size:0.82rem; color:var(--muted); margin-bottom:5px;}
+  .progress-bar-bg{background:rgba(0,0,0,.07); border-radius:20px; height:9px; overflow:hidden;}
+  .progress-bar-fill{
+    background:linear-gradient(90deg,var(--accent-dark),var(--accent));
+    height:100%; width:0%; transition:width .3s ease, background .35s ease;
+  }
+
+  .card{
+    background:var(--card); border-radius:16px; padding:24px 22px;
+    box-shadow:0 2px 14px rgba(20,30,60,.07);
+    border:1px solid var(--border); border-top:4px solid var(--accent);
+    min-height:200px; transition:border-color .35s ease;
+  }
+  .topic-tag{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--accent-soft); color:var(--accent-dark); font-size:0.74rem;
+    font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    padding:4px 11px; border-radius:20px; margin-bottom:10px;
+    border:1px solid var(--accent-line);
+  }
+  .q-title{font-size:1.12rem; font-weight:700; line-height:1.4; margin:0 0 12px;}
+  .cue-bullets{margin:0 0 14px 18px; padding:0;}
+  .cue-bullets li{margin-bottom:4px; line-height:1.4;}
+
+  .colloc-box{
+    background:var(--accent-soft); border:1px dashed var(--accent-line); border-radius:10px;
+    padding:10px 14px; margin-bottom:16px; font-size:0.9rem; transition:.35s;
+  }
+  .colloc-box .lbl{
+    font-weight:700; color:var(--accent-dark); display:block; margin-bottom:5px;
+    font-size:0.8rem; text-transform:uppercase; letter-spacing:.03em;
+  }
+  .chip{
+    display:inline-block; background:#fff; border:1px solid var(--accent-line); color:var(--accent-dark);
+    padding:3px 10px; border-radius:20px; margin:3px 4px 0 0; font-weight:600; font-size:0.85rem;
+  }
+
+  .hint{color:var(--muted); font-size:0.88rem; font-style:italic; margin-bottom:16px;}
+
+  .timer-box{
+    display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;
+    background:#fbf6ea; border:1px solid #f0dfad; border-radius:12px; padding:14px; margin-bottom:16px;
+  }
+  .timer-display{font-size:2.1rem; font-weight:700; color:var(--amber); min-width:110px; text-align:center; font-variant-numeric:tabular-nums;}
+  .timer-display.warn{color:var(--red);}
+  .timer-btns button{border:none; border-radius:8px; padding:8px 14px; font-weight:600; cursor:pointer; font-size:0.85rem; margin:0 3px;}
+  .t-start{background:var(--green); color:#fff;}
+  .t-pause,.t-reset{background:#e5e7eb; color:var(--ink);}
+
+  .reveal-btn{
+    display:block; width:100%; padding:12px; border:none; border-radius:10px;
+    background:var(--accent); color:#fff; font-weight:700; font-size:0.98rem; cursor:pointer;
+    margin-bottom:6px; transition:.2s;
+  }
+  .reveal-btn:hover{background:var(--accent-dark);}
+
+  .answer-box{
+    display:none; background:var(--accent-soft); border-left:4px solid var(--accent); border-radius:8px;
+    padding:16px 18px; margin-top:14px; line-height:1.65; font-size:0.97rem;
+  }
+  .answer-box.show{display:block; animation:fade .25s ease;}
+  .answer-box p{margin:0 0 10px;}
+  .answer-box p:last-child{margin-bottom:0;}
+  .answer-box strong{color:var(--accent-dark);}
+  .answer-box u{text-decoration-color:#9ca3af;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+  .nav-row{display:flex; justify-content:space-between; align-items:center; margin-top:20px;}
+  .nav-btn{border:none; border-radius:9px; padding:10px 18px; font-weight:600; cursor:pointer; font-size:0.9rem; background:#e5e7eb; color:var(--ink);}
+  .nav-btn.primary{background:var(--accent); color:#fff;}
+  .nav-btn:disabled{opacity:.4; cursor:not-allowed;}
+  .counter{color:var(--muted); font-size:0.85rem;}
+
+  .done-msg{text-align:center; padding:30px 10px;}
+  .done-msg h2{color:var(--accent-dark); margin-bottom:6px;}
+  .done-msg .big{font-size:2.4rem; display:block; margin-bottom:8px;}
+</style>
+</head>
+<body data-theme="transport">
+<div class="wrap">
+  <div class="masthead">
+    <div class="badge" id="badge">🚌</div>
+    <h1>IELTS Speaking Practice</h1>
+    <p class="subtitle">Day 9 — Transport &amp; Journeys · Band 7.0+</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-part="part1">Part 1</button>
+    <button class="tab-btn" data-part="part2">Part 2</button>
+    <button class="tab-btn" data-part="part3">Part 3</button>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="progressText">Question 1 of 4</span>
+      <span id="progressPercent">0%</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="card" id="card"></div>
+
+  <div class="nav-row">
+    <button class="nav-btn" id="prevBtn">&larr; Previous</button>
+    <span class="counter" id="counterText"></span>
+    <button class="nav-btn primary" id="nextBtn">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+const THEME_ICON = {
+  transport: "🚌",
+  traffic: "🚦",
+  journeys: "🧳"
+};
+
+const DATA = {
+  part1: {
+    label: "Part 1 — Introduction & Interview",
+    items: [
+      {
+        theme: "transport", topic: "Transport",
+        q: "1. How do you usually get to school?",
+        colloc: ["commute to school","give me a lift","door to door","within walking distance"],
+        answer: "<p>I usually <strong>commute to school</strong> by bicycle, since I live about two kilometres away and it only takes me around ten minutes. <u>On days when it rains</u>, my dad will <strong>give me a lift</strong> on his motorbike on his way to work, which is quicker but means I have to leave earlier. <u>I'd say</u> I'm quite lucky, because some of my classmates spend almost an hour on the bus each morning. <u>If anything</u>, I wish the school were <strong>within walking distance</strong>, but cycling <strong>door to door</strong> is the next best thing.</p>"
+      },
+      {
+        theme: "transport", topic: "Transport",
+        q: "2. Do you like taking the bus?",
+        colloc: ["packed with passengers","at peak times","a cheap option","stuck in traffic"],
+        answer: "<p>I have mixed feelings about it, to be honest. On the positive side, it's <strong>a cheap option</strong> and I can read or listen to music instead of concentrating on the road. <u>The main drawback</u> is that buses here are often <strong>packed with passengers</strong> <strong>at peak times</strong>, so you frequently end up standing for the whole journey. <u>On top of that</u>, if the bus gets <strong>stuck in traffic</strong>, a twenty-minute trip can easily take forty. <u>So overall</u>, I'll take the bus when I'm not in a hurry, but I'd rather cycle.</p>"
+      },
+      {
+        theme: "transport", topic: "Transport",
+        q: "3. Is it easy to get around your city?",
+        colloc: ["get around","a decent transport network","heavy traffic","well connected"],
+        answer: "<p>Generally speaking, yes, it's fairly easy to <strong>get around</strong>, although it depends on the time of day. The city has <strong>a decent transport network</strong> with plenty of bus routes, and most districts are <strong>well connected</strong>, so you can reach almost anywhere without too much difficulty. <u>The real problem</u> is <strong>heavy traffic</strong> during rush hour, when the roads become completely clogged with motorbikes. <u>For short distances</u>, though, most people here simply ride a motorbike, which is why the city feels quite convenient despite the congestion.</p>"
+      },
+      {
+        theme: "transport", topic: "Transport",
+        q: "4. Would you like to learn to drive a car in the future?",
+        colloc: ["get a driving licence","a useful skill","on the road","behind the wheel"],
+        answer: "<p>Yes, definitely — I'd like to <strong>get a driving licence</strong> as soon as I'm old enough. <u>The main reason</u> is that I think it's <strong>a useful skill</strong> to have regardless of whether you own a car, particularly for family trips or in an emergency. <u>I'd also admit</u> that the idea of being <strong>behind the wheel</strong> on a long drive along the coast really appeals to me. <u>Having said that</u>, I'd be quite nervous the first few times I went <strong>on the road</strong> here, simply because the traffic is so chaotic.</p>"
+      }
+    ]
+  },
+  part2: {
+    label: "Part 2 — Long Turn (Cue Card)",
+    items: [
+      {
+        theme: "traffic",
+        title: "Cue Card — Describe an occasion when you were stuck in a traffic jam for a very long time",
+        bullets: ["when and where it happened","who you were with","what you did while you were waiting","and explain how you felt about the experience"],
+        colloc: ["at a standstill","bumper to bumper","lose my patience","make the best of it"],
+        timer: true,
+        answer: "<p>The occasion I'd like to describe happened about a year ago, on the afternoon before a public holiday. My family and I were driving out of the city to visit my grandparents in the countryside, a trip that normally takes roughly two hours.</p><p>I was with my parents and my younger sister, and we'd set off at about four o'clock, which turned out to be a terrible decision. Within twenty minutes of joining the main road out of town, the traffic came to <strong>a standstill</strong>. Thousands of other families had clearly had exactly the same idea, so the cars were <strong>bumper to bumper</strong> for as far as we could see. In the end, we sat in that queue for nearly three hours and covered maybe fifteen kilometres.</p><p>As for what I did while we were waiting, I tried to <strong>make the best of it</strong>. I listened to a podcast for the first hour, then played a card game with my sister on the back seat, and at one point my mum handed round the snacks she'd packed for my grandparents. My dad, meanwhile, kept checking the map on his phone hoping to find a shortcut, though there wasn't one.</p><p>In terms of how I felt, I was frustrated at first and did <strong>lose my patience</strong> once or twice, mainly because we'd promised to arrive before dinner. <u>Looking back, though</u>, I remember it surprisingly fondly — we ended up talking for three hours without anyone being distracted, which rarely happens these days. <u>So</u> although it was a wasted afternoon in one sense, it wasn't entirely a bad experience.</p>"
+      }
+    ]
+  },
+  part3: {
+    label: "Part 3 — Discussion",
+    items: [
+      {
+        theme: "traffic", topic: "Traffic congestion",
+        q: "1. How can we solve the traffic jam problem?",
+        colloc: ["ease congestion","road infrastructure","discourage people from","a long-term solution"],
+        answer: "<p>I think it requires several measures working together rather than one single fix. <u>The most obvious step</u> is to invest in <strong>road infrastructure</strong> — building ring roads and flyovers so that through traffic doesn't have to pass through the city centre. <u>Alongside that</u>, governments can <strong>discourage people from</strong> driving by introducing congestion charges or raising parking fees in busy districts, which has worked well in cities like London and Singapore. <u>I'd argue, though</u>, that the only genuine <strong>long-term solution</strong> is to give people a realistic alternative, so improving buses and building metro lines is what will really <strong>ease congestion</strong>.</p>"
+      },
+      {
+        theme: "traffic", topic: "Traffic congestion",
+        q: "2. Do you think developing public transport can solve traffic jams?",
+        colloc: ["take cars off the road","a viable alternative","to some extent","a change in mindset"],
+        answer: "<p>I'd say it helps enormously, but <strong>to some extent</strong> rather than completely. The logic is simple: every full bus or metro train potentially <strong>takes</strong> dozens of <strong>cars off the road</strong>, so a well-designed system can reduce congestion dramatically, as we've seen in Tokyo and Seoul. <u>However</u>, it only works if the service is genuinely <strong>a viable alternative</strong> — if buses are slow, unreliable or uncomfortable, people will simply go back to their own vehicles. <u>There's also</u> the issue of attitude, because owning a car is still a status symbol in many countries, so real progress requires <strong>a change in mindset</strong> as well as better infrastructure.</p>"
+      },
+      {
+        theme: "transport", topic: "Public transport",
+        q: "3. Will there be fewer cars if public transport is free?",
+        colloc: ["a financial incentive","the deciding factor","convenience and reliability","at taxpayers' expense"],
+        answer: "<p>I think free travel would certainly attract some people, but I doubt it would be <strong>the deciding factor</strong> for most drivers. It's clearly <strong>a financial incentive</strong>, and it would make a real difference to students and low-income families who are sensitive to cost. <u>That said</u>, people who own cars have usually already paid for them, so what they really care about is <strong>convenience and reliability</strong> rather than the price of a ticket. <u>There's also</u> a practical concern, since running a free system <strong>at taxpayers' expense</strong> might leave less money for maintaining and expanding the network. <u>So in my view</u>, cheaper fares help, but faster and more frequent services would do far more.</p>"
+      },
+      {
+        theme: "transport", topic: "Public transport",
+        q: "4. What needs to be improved in public transport?",
+        colloc: ["run on schedule","wheelchair accessible","expand the network","overcrowding"],
+        answer: "<p>There are several areas that need attention, at least where I live. <u>The biggest issue</u> is reliability — buses here rarely <strong>run on schedule</strong>, so passengers can never plan a journey with any confidence. <u>Closely linked to that</u> is <strong>overcrowding</strong> during peak hours, which could be solved by running more frequent services rather than larger vehicles. <u>I'd also point out</u> that very few buses are <strong>wheelchair accessible</strong>, which effectively excludes elderly and disabled passengers altogether. <u>Finally</u>, cities need to <strong>expand the network</strong> into the suburbs, because at the moment the routes mainly serve the centre, which is where congestion is worst anyway.</p>"
+      },
+      {
+        theme: "journeys", topic: "Long journeys",
+        q: "5. Why do people dislike long journeys?",
+        colloc: ["cramped conditions","tedious","motion sickness","take its toll"],
+        answer: "<p>I think there are a few reasons. <u>The most common one</u> is physical discomfort — sitting in <strong>cramped conditions</strong> for hours with very little room to stretch really does <strong>take its toll</strong>, especially on older travellers. <u>Another factor</u> is boredom, because once you've slept and finished your book, the remaining hours can become extremely <strong>tedious</strong>. <u>I'd also mention</u> that a lot of people suffer from <strong>motion sickness</strong> on winding roads or at sea, which turns the whole trip into something to endure rather than enjoy. <u>On top of all that</u>, long journeys often involve delays and waiting around, and that uncertainty is arguably more stressful than the travelling itself.</p>"
+      }
+    ]
+  }
+};
+
+let currentPart = "part1";
+let currentIndex = 0;
+let timerInterval = null;
+let timerSeconds = 120;
+
+const cardEl = document.getElementById("card");
+const badgeEl = document.getElementById("badge");
+const progressText = document.getElementById("progressText");
+const progressPercent = document.getElementById("progressPercent");
+const progressFill = document.getElementById("progressFill");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const counterText = document.getElementById("counterText");
+
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    currentPart = btn.dataset.part;
+    currentIndex = 0;
+    stopTimer();
+    render();
+  });
+});
+
+prevBtn.addEventListener("click", ()=>{
+  if(currentIndex>0){ currentIndex--; stopTimer(); render(); }
+});
+nextBtn.addEventListener("click", ()=>{
+  const items = DATA[currentPart].items;
+  if(currentIndex < items.length-1){ currentIndex++; stopTimer(); render(); }
+  else { currentIndex = items.length; stopTimer(); render(); }
+});
+
+function formatTime(s){
+  const m = Math.floor(s/60).toString().padStart(2,"0");
+  const sec = (s%60).toString().padStart(2,"0");
+  return m+":"+sec;
+}
+
+function stopTimer(){
+  if(timerInterval){ clearInterval(timerInterval); timerInterval=null; }
+  timerSeconds = 120;
+}
+
+function applyTheme(theme){
+  if(!theme) return;
+  document.body.dataset.theme = theme;
+  badgeEl.textContent = THEME_ICON[theme] || "💬";
+}
+
+function render(){
+  const part = DATA[currentPart];
+  const items = part.items;
+  const total = items.length;
+
+  if(currentIndex >= total){
+    const last = items[items.length-1];
+    applyTheme(last.theme);
+    cardEl.innerHTML = '<div class="done-msg"><span class="big">🎉</span><h2>Well done!</h2><p>You have finished all the questions in this part.</p></div>';
+    progressText.textContent = "Completed " + total + " of " + total;
+    progressPercent.textContent = "100%";
+    progressFill.style.width = "100%";
+    prevBtn.disabled = false;
+    nextBtn.disabled = true;
+    counterText.textContent = "";
+    return;
+  }
+
+  const item = items[currentIndex];
+  applyTheme(item.theme);
+
+  progressText.textContent = "Question " + (currentIndex+1) + " of " + total;
+  const pct = Math.round(((currentIndex)/total)*100);
+  progressPercent.textContent = pct + "%";
+  progressFill.style.width = pct + "%";
+  counterText.textContent = part.label;
+  prevBtn.disabled = currentIndex === 0;
+  nextBtn.disabled = false;
+  nextBtn.textContent = currentIndex === total-1 ? "Finish ✓" : "Next →";
+
+  let html = "";
+
+  if(item.topic){
+    html += '<span class="topic-tag">'+(THEME_ICON[item.theme]||"")+' '+item.topic+'</span>';
+  }
+
+  if(item.title){
+    html += '<div class="q-title">'+item.title+'</div>';
+    html += '<ul class="cue-bullets">' + item.bullets.map(b=>'<li>'+b+'</li>').join("") + '</ul>';
+  } else {
+    html += '<div class="q-title">'+item.q+'</div>';
+  }
+
+  html += '<div class="colloc-box"><span class="lbl">Useful collocations</span>' +
+          item.colloc.map(c=>'<span class="chip">'+c+'</span>').join("") + '</div>';
+
+  if(item.timer){
+    html += '<div class="timer-box">' +
+              '<div class="timer-display" id="timerDisplay">02:00</div>' +
+              '<div class="timer-btns">' +
+                '<button class="t-start" id="timerStart">▶ Start</button>' +
+                '<button class="t-pause" id="timerPause">⏸ Pause</button>' +
+                '<button class="t-reset" id="timerReset">↺ Reset</button>' +
+              '</div>' +
+            '</div>';
+    html += '<div class="hint">Take 1 minute to prepare notes, then speak for up to 2 minutes using the timer above.</div>';
+  } else {
+    html += '<div class="hint">Take a moment to think and speak your answer out loud, then check the sample below.</div>';
+  }
+
+  html += '<button class="reveal-btn" id="revealBtn">Show sample answer</button>';
+  html += '<div class="answer-box" id="answerBox">' + item.answer + '</div>';
+
+  cardEl.innerHTML = html;
+
+  document.getElementById("revealBtn").addEventListener("click", ()=>{
+    document.getElementById("answerBox").classList.add("show");
+  });
+
+  if(item.timer){ setupTimer(); }
+}
+
+function setupTimer(){
+  const display = document.getElementById("timerDisplay");
+  const startBtn = document.getElementById("timerStart");
+  const pauseBtn = document.getElementById("timerPause");
+  const resetBtn = document.getElementById("timerReset");
+
+  display.textContent = formatTime(timerSeconds);
+
+  startBtn.addEventListener("click", ()=>{
+    if(timerInterval) return;
+    timerInterval = setInterval(()=>{
+      timerSeconds--;
+      display.textContent = formatTime(timerSeconds);
+      if(timerSeconds <= 10){ display.classList.add("warn"); }
+      if(timerSeconds <= 0){
+        clearInterval(timerInterval);
+        timerInterval = null;
+        display.textContent = "Time's up!";
+      }
+    }, 1000);
+  });
+
+  pauseBtn.addEventListener("click", ()=>{
+    if(timerInterval){ clearInterval(timerInterval); timerInterval = null; }
+  });
+
+  resetBtn.addEventListener("click", ()=>{
+    if(timerInterval){ clearInterval(timerInterval); timerInterval = null; }
+    timerSeconds = 120;
+    display.classList.remove("warn");
+    display.textContent = formatTime(timerSeconds);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
